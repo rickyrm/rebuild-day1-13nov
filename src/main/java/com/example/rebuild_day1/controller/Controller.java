@@ -17,7 +17,8 @@ public class Controller {
         return List.of(
                 new Person("Juan", "Pérez", 30, "Madrid"),
                 new Person("Ana", "Gómez", 25, "Sevilla"),
-                new Person("Luis", "Martínez", 40, "Valencia")
+                new Person("Luis", "Martínez", 40, "Valencia"),
+                new Person("Marta", "López", 35, "Barcelona")
         );
     }
 
