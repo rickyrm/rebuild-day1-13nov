@@ -2,19 +2,26 @@ package com.example.rebuild_day1.model;
 
 public class Person {
 
+    private String id;
     private String name;
     private String secondName;
     private int age;
     private String city;
 
-    public Person(String name, String secondName, int age, String city) {
+    public Person(String id, String name, String secondName, int age, String city) {
+        this.id=id;
         this.name=name;
         this.secondName=secondName;
         this.age=age;
         this.city=city;
 
     }
-
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
