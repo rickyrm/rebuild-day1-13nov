@@ -3,6 +3,7 @@ package com.example.rebuild_day1.controller;
 import com.example.rebuild_day1.model.*;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,17 +28,16 @@ public class Controller {
     }
 
     @GetMapping("/{id}")
-        public Map<String, String> getPersonById(@PathVariable
-                Integer id) {
+        public ResponseEntity<Map<String, String>>
+        getPersonById(@PathVariable Integer id) {
             if (id <=0){
                 Map<String, String> errorResponse =
                         Map.of("error", "ID no puede ser menor o igual a 0");
-                throw new
-                        ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        errorResponse.get("error"));
+                return
+                        ResponseEntity.badRequest().body(errorResponse);
             }
-            return Map.of("id", id.toString());
-
+                return
+                        ResponseEntity.ok(Map.of("id", id.toString()));
         }
     }
 
