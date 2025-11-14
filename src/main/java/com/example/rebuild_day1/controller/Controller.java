@@ -1,7 +1,11 @@
 package com.example.rebuild_day1.controller;
 
+import com.example.rebuild_day1.manual.config.ManualServletConfig;
+import com.example.rebuild_day1.manual.servlet.HelloServlet;
 import com.example.rebuild_day1.model.*;
 
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
+import java.lang.annotation.Annotation;
 
 @RestController
 @RequestMapping("/Person")
@@ -39,6 +44,13 @@ public class Controller {
                 return
                         ResponseEntity.ok(Map.of("id", id.toString()));
         }
+
+    @Bean
+    public ServletRegistrationBean<HelloServlet>
+    helloServlet(){
+        return ManualServletConfig.hello();
     }
+}
+
 
 
