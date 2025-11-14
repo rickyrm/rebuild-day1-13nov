@@ -12,11 +12,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/Person")
+("/Person")
 public class Controller {
 
-    @GetMapping
+
     public List<Person> getPerson() {
         return List.of(
                 new Person("1","Juan", "Pérez", 30, "Madrid"),
@@ -26,8 +25,8 @@ public class Controller {
         );
     }
 
-    @GetMapping("/{id}")
-        public Map<String, String> getPersonById(@PathVariable
+    ("/{id}")
+        public Map<String, String> getPersonById(
                 Integer id) {
             if (id <=0){
                 Map<String, String> errorResponse =
