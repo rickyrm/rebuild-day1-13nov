@@ -94,3 +94,22 @@ El numero interno de JARs internos:
 ````bash
 jar tf target/rebuild-day1-0.0.1-SNAPSHOT.jar | grep -c BOOT-INF/lib
 ````
+JAR actual: 20MB y 31 librerias internas.
+
+### Comparativa cerrada
+
+| Métrica               | Valor                              |
+| --------------------- | ---------------------------------- |
+| Latencia servlet puro | ≈ 7,5 ms/req                       |
+| Latencia Spring MVC   | ≈ 7,4 ms/req                       |
+| Tamaño fat-jar        | 20 MB                              |
+| JARs internos         | 31                                 |
+| Grasa removable       | **0** (todos los starters se usan) |
+
+## Resumen final del día 3
+
+- 1000 req: servlet 7.5 ms / Spring MVC 7.4 ms → overhead < 1 %
+- Fat-jar: 20 MB, 31 libs, no removable starters
+- Manual validation 400 JSON without @Valid
+- Servlet registered without @WebServlet
+
