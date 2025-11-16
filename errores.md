@@ -55,3 +55,42 @@ Spring MVC → path en anotaciones de clase/método.
 - Custom 400 JSON without @Valid
 
 ## Nueva rama day3-latency-slim-jar
+Comparativa entre Spring MVC y Servlet puro.
+
+| Endpoint               | Total 1 000 req | Media por req |
+| ---------------------- | --------------- | ------------- |
+| Servlet puro `/manual` | 7 477 ms        | ≈ 7,5 ms      |
+| Spring MVC `/Person/1` | 7 453 ms        | ≈ 7,4 ms      |
+
+- Conclusión hoy: diferencia insignificante (+-0.3%) --> el overhead de Spring MVC es mínimo para este caso.
+
+## Reducir JAR eliminando starter que no uso.
+````bash
+mvn dependency:list | grep -i starter
+````
+### Resultado:
+| Starter                       | Para qué lo usas           |
+| ----------------------------- | -------------------------- |
+| `spring-boot-starter-web`     | Tus endpoints REST         |
+| `spring-boot-starter-tomcat`  | Servidor embebido          |
+| `spring-boot-starter-json`    | Conversión JSON automática |
+| `spring-boot-starter-logging` | Logs que ves en consola    |
+| `spring-boot-starter`         | Core de Spring Boot        |
+| `spring-boot-starter-test`    | Solo test (scope `test`)   |
+
+Conclusión: No hay grasa que quitar. 
+
+### Slim-JAR alternativo: quitar test del package
+
+Para ello se empaqueta sin test, solo reducirá un poco de KBs.
+````bash
+mvn clean package -DskipTests
+````
+Vemos el tamaño nuevo con el comando:
+````bash
+ls -lh target/*.jar
+````
+El numero interno de JARs internos:
+````bash
+jar tf target/rebuild-day1-0.0.1-SNAPSHOT.jar | grep -c BOOT-INF/lib
+````
