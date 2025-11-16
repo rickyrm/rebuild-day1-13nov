@@ -53,3 +53,5 @@ Spring MVC → path en anotaciones de clase/método.
 - Manual servlet 200 OK at /manual
 - Spring MVC 200 OK at /Person/{id}
 - Custom 400 JSON without @Valid
+
+## Nueva rama day3-latency-slim-jar
